@@ -38,7 +38,7 @@ python image_range_cluster_v2.py
 ## 需完善 TODO :
 
    
-1 运行时间较长（~2s），需优化；
+1 运行时间较长（~2s），需优化，论文提到只需要20ms,差距还很大；
 &nbsp;&nbsp;
     
 
