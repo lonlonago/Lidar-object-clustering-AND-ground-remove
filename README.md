@@ -1,9 +1,9 @@
-
+ 
 
 
 # 激光雷达障碍物检测和聚类
 
-
+ ---
    
 &nbsp;&nbsp;  
 ### 参考论文： Efficient Online Segmentation for Sparse 3D Laser Scans ;  
@@ -11,8 +11,10 @@
 
    
 其中包含地面分割代码 my_ransac
-&nbsp;&nbsp;
 
+&nbsp;&nbsp;
+ ---
+ 
 ## 依赖安装 install dependence :
 numpy
 &nbsp;&nbsp;
@@ -21,6 +23,9 @@ numpy
 python-pcl（安装参考python-pcl的Github）
 &nbsp;&nbsp;
    
+
+ ---
+ 
 ## 需完善 TODO :
 
    
@@ -36,6 +41,8 @@ python-pcl（安装参考python-pcl的Github）
 3 RANSAC 地面分割效果还存在一些问题，针对某些特殊情况会出现漏掉部分地面或者分割出墙面；
 
 
+
+ ---
    
 ## 效果图 
       
