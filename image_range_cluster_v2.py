@@ -120,7 +120,7 @@ def neighbourhood(r, c):
 if __name__ == "__main__":
     print('---------'*10)
 
-    path = r'D:\zl\work_file\my_project\data\samples\000017.bin'
+    path = r'000017.bin'
     points = np.fromfile(path, dtype=np.float32).reshape(-1, 4)
 
     print('-------------------ransac----------------------------')
