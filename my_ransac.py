@@ -33,7 +33,6 @@ def my_ransac_v2(data,
     while i < K:
         # 随机选3个点  np.random.choice 很耗费时间，改为random模块
         # s3 = np.random.choice(L_data, sample_size, replace=False)
-        s3 = random.sample(R_L, sample_size)
         # TODO 三个点的高度可以作为第一步初筛的标准;
         # TODO 2个点的y 距离可以作为第一步初筛的标准，避免出现把墙作为平面
         # 没有效果，一定要迭代固定的次数，才能找到平面，这是为什么，不是随机的吗？
@@ -52,7 +51,6 @@ def my_ransac_v2(data,
         #     continue
 
         # 计算平面方程系数
-        coeffs = estimate_plane(data[s3,:], normalize=False)
         if coeffs is None:
             continue
         # 法向量的模, 如果系数标准化了就不需要除以法向量的模了
@@ -96,7 +94,6 @@ def my_ransac_v2(data,
             wn = np.power(w, 3)
             p_no_outliers = 1.0 - wn
             # sd_w = np.sqrt(p_no_outliers) / wn
-            K = (np.log(1-P) / np.log(p_no_outliers)) #+ sd_w
         # print('# K:', i, K, near_point_num)
 
         i += 1
@@ -146,7 +143,6 @@ def estimate_plane(xyz, normalize=True):
         return None
 
 
-    a = (vector1[1]*vector2[2]) - (vector1[2]*vector2[1])
     b = (vector1[2]*vector2[0]) - (vector1[0]*vector2[2])
     c = (vector1[0]*vector2[1]) - (vector1[1]*vector2[0])
     # normalize
