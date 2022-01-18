@@ -16,7 +16,6 @@ def depth_clustering(projected_image,
                      h_res=np.radians(360/2048.),
                      v_res=np.radians(26.9/65)):
 
-    depth = projected_image[:, :, 4]
     depth_shape = depth.shape
 
     # 初始 label , label matrix
@@ -38,7 +37,6 @@ def depth_clustering(projected_image,
     # 过滤掉点数量较多或较少的类别
     not_real_obstacle = 0
     for lx in range(1,label):
-        cluster_num = np.sum(label_matrix == lx)
         # 最大数量限制会把一些墙体也过滤掉，这是否是需要的？
         # if cluster_num < min_cluster_size :
         if cluster_num < min_cluster_size or cluster_num > max_cluster_size:
@@ -58,7 +56,6 @@ def one_label_BFS(i, j, label, label_matrix,
     # TODO 用set 更合适，因为会添加进去很多重复的点，可以用set的自动去重；
     Q = [(i,j)]
     while len(Q) > 0:
-        r,c = Q[0]
         Q.pop(0) # 默认是丢弃最后一个元素， 要放在这里，不然会死循环
         if label_matrix[r, c] > 0:
             # we have already labeled this point.No need to deal it.
@@ -76,8 +73,6 @@ def one_label_BFS(i, j, label, label_matrix,
             if label_matrix[rn, cn] > 0:
                 # we have already labeled this point.No need to add it.
                 continue
-            d1 = np.max((depth[r,c], depth[rn, cn]))
-            d2 = np.min((depth[r,c], depth[rn, cn]))
 
             # TODO  两种方案，使用固定分辨率，或者实时计算分辨率，好像差别不大
             # plan 1
